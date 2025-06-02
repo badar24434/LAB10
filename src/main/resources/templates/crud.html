@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management System - Lab 10 CRUD App</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Staff Management System</h1>
+        <p>Complete CRUD Operations with Department & Project Relationships</p>
+    </div>
+
+    <div class="content">
+        <!-- Alert Messages -->
+        <div id="alertSuccess" class="alert alert-success"></div>
+        <div id="alertError" class="alert alert-danger"></div>
+
+        <!-- Add/Edit Form Section -->
+        <div class="form-section">
+            <h2 id="formTitle">Add New Staff Member</h2>
+
+            <form id="staffForm">
+                <input type="hidden" id="staffId" value="">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter staff name" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Position</label>
+                        <input type="text" id="position" name="position" placeholder="Enter job position" required>
+                        <div class="error-message" id="positionError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select Department</option>
+                            <!-- Department options will be populated by JavaScript -->
+                        </select>
+                        <div class="error-message" id="departmentError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projects">Projects</label>
+                        <div class="project-selection">
+                            <div class="selection-column">
+                                <div class="column-title">Available Projects</div>
+                                <select id="projectsSelect" multiple size="8"> <!-- Increased size -->
+                                    <!-- Project options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="project-actions">
+                                <button type="button" class="btn btn-sm" id="addProjectBtn" title="Add selected project">→</button>
+                                <button type="button" class="btn btn-sm" id="removeProjectBtn" title="Remove selected project">←</button>
+                            </div>
+                            <div class="selection-column">
+                                <div class="column-title">Assigned Projects</div>
+                                <select id="assignedProjects" multiple size="8"> <!-- Increased size -->
+                                    <!-- Assigned projects will appear here -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="error-message" id="projectsError"></div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Add Staff</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="clearBtn">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Staff List Section -->
+        <div class="table-section">
+            <h2>Staff List</h2>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading data...</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Department</th>
+                            <th>Projects</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="staffTableBody">
+                        <!-- Staff data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Department Section -->
+        <div class="department-section">
+            <h2>Departments</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Staff Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="departmentTableBody">
+                        <!-- Department data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Projects Section -->
+        <div class="project-section">
+            <h2>Projects</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Staff Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projectTableBody">
+                        <!-- Project data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- H2 Console Link -->
+        <div style="text-align: center; margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+            <p>Database Administration: <a href="/h2-console" target="_blank" class="btn btn-primary">Access H2 Console</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
