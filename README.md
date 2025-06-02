@@ -1,141 +1,120 @@
-# Staff Management System - Spring Boot CRUD Application
+# Staff Management System - LAB10
 
-This is a simple yet comprehensive Staff Management System built using Spring Boot. It provides a complete CRUD (Create, Read, Update, Delete) interface for managing staff members with a clean, responsive UI.
-
-## Features
-
-- Complete CRUD operations for staff management
-- Modern, responsive UI with gradient design
-- Client-side and server-side validation
-- RESTful API endpoints
-- In-memory H2 database with console access
-- Form validation with user feedback
-- Loading indicators and success/error messages
+A complete CRUD application built with Spring Boot for managing staff members, departments, and projects with relationships between them.
 
 ## Prerequisites
 
 - Java 17 or higher
-- Maven (or use the included Maven wrapper)
-- An IDE like IntelliJ IDEA, Eclipse, or VS Code (optional)
+- Maven 3.6+ or Gradle 7+
+- Git (optional - for cloning the repository)
 
 ## How to Run the Application
 
-### Using Maven Wrapper
+### Step 1: Clone or Download the Project
 
-1. Open a terminal/command prompt
-2. Navigate to the project root directory (`LAB09`)
-3. Run the application using the Maven wrapper:
+If using Git:
 
-   ```
-   # On Windows
-   mvnw.cmd spring-boot:run
+```bash
+git clone <repository-url>
+cd LAB10
+```
 
-   # On Linux/Mac
-   ./mvnw spring-boot:run
-   ```
+Alternatively, download and extract the ZIP file.
 
-### Using Maven (if installed)
+### Step 2: Build the Project
 
-1. Open a terminal/command prompt
-2. Navigate to the project root directory (`LAB09`)
-3. Run the application using Maven:
+Using Maven:
 
-   ```
-   mvn spring-boot:run
-   ```
+```bash
+mvn clean install
+```
 
-### Using an IDE
+Using Gradle:
 
-1. Import the project into your IDE
-2. Run `com.csc3402.lab.lab09.Lab09Application` as a Java application
+```bash
+gradle build
+```
 
-## Accessing the Application
+### Step 3: Run the Application
 
-- Web Interface: [http://localhost:8080](http://localhost:8080)
-- H2 Database Console: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
-  - JDBC URL: `jdbc:h2:mem:staffdb`
-  - Username: `sa`
-  - Password: (leave empty)
+Using Maven:
 
-## Project Structure and File Descriptions
+```bash
+mvn spring-boot:run
+```
 
-### Java Source Files
+Using Gradle:
 
-- **Lab09Application.java**: Main Spring Boot application class that serves as the entry point
-- **model/Staff.java**: Entity class representing a staff member with validation annotations
-- **repository/StaffRepository.java**: JPA repository interface for database operations
-- **controller/WebController.java**: MVC controller for handling web page requests
-- **controller/ApiController.java**: REST controller exposing API endpoints
-- **controller/StaffController.java**: Traditional MVC controller for staff operations
-- **config/DataLoader.java**: Component that loads sample data on application startup
+```bash
+gradle bootRun
+```
 
-### Templates and Static Resources
+Alternatively, you can run the JAR file directly: (not recommended)
 
-- **templates/crud.html**: Main HTML page for the CRUD application
-- **static/js/script.js**: JavaScript file containing all client-side logic
-- **static/css/styles.css**: CSS file containing all styling for the application
+```bash
+java -jar target/lab09-0.0.1-SNAPSHOT.jar
+```
 
-### Configuration Files
+### Step 4: Access the Application
 
-- **application.properties**: Configuration file for Spring Boot properties
-- **pom.xml**: Maven project configuration file
+Open your browser and navigate to:
 
-### API Endpoints
+```
+http://localhost:8080
+```
 
-| Method | URL                   | Description                               |
-|--------|------------------------|-------------------------------------------|
-| GET    | /api/staffs           | Get all staff members                      |
-| GET    | /api/staffs/{id}      | Get a specific staff member by ID          |
-| POST   | /api/staffs           | Create a new staff member                  |
-| PUT    | /api/staffs/{id}      | Update an existing staff member            |
-| DELETE | /api/staffs/{id}      | Delete a staff member                      |
+The application should load with the staff management interface.
 
-## Application Flow
+## Using the Application
 
-1. The application starts with preloaded sample data
-2. Users can view all staff members in a table
-3. Users can add new staff members via the form at the top
-4. Each staff record in the table has edit and delete buttons
-5. Clicking edit loads the staff data into the form for updating
-6. Delete button removes the staff member after confirmation
-7. Validation is performed both client-side and server-side
+### Staff Management
 
-## Implementation Details
+- **View Staff**: All staff members are displayed in a table
+- **Add Staff**: Fill out the form at the top of the page and click "Add Staff"
+- **Edit Staff**: Click the "Edit" button next to a staff member
+- **Delete Staff**: Click the "Delete" button next to a staff member
 
-### Frontend
+### Department and Project Views
 
-- Pure HTML, CSS, and JavaScript (no frameworks)
-- Responsive design works on desktop and mobile devices
-- Modern UI with gradient backgrounds and subtle animations
-- Client-side form validation with visual feedback
+- View all departments and their staff counts
+- View all projects and their status
 
-### Backend
+### Project Assignment
 
-- Spring Boot 3.5.0 for application framework
-- Spring Data JPA for database operations
-- H2 in-memory database for data storage
-- Bean validation for entity validation
-- RESTful API design principles
+- When adding or editing a staff member, you can assign multiple projects
+- Use the dual-list selection interface to add/remove project assignments
 
-## Error Handling
+## Database Console
 
-- Client-side validation prevents invalid submissions
-- Server-side validation ensures data integrity
-- Error messages are displayed to the user
-- Success messages confirm operations
+The application uses H2 in-memory database. You can access the database console at:
 
-## Notes
+```
+http://localhost:8080/h2-console
+```
 
-- This is a development/demonstration application - use a persistent database for production
-- The application is designed to be simple but functional
-- The H2 database is reset on application restart
+Connection details:
 
-## Troubleshooting
+- JDBC URL: `jdbc:h2:mem:staffdb`
+- Username: `sa`
+- Password: (leave empty)
 
-- If the application fails to start, ensure no other applications are using port 8080
-- Check the console output for detailed error messages
-- Ensure Java 17 or higher is installed and configured
+## Technical Details
+
+- **Backend**: Spring Boot 3.x
+- **Database**: H2 in-memory database
+- **Frontend**: HTML, CSS, JavaScript
+- **Dependencies**: Spring Web, Spring Data JPA, H2 Database
+
+## Sample Data
+
+The application automatically loads sample data on startup, including:
+
+- Departments (IT, HR, Sales)
+- Projects (Website Redesign, CRM Implementation, Mobile App, etc.)
+- Staff members with assignments to departments and projects
+
+You can start using the application right away without adding any data.
 
 ---
 
-*Created for CSC3402 Lab 09*
+*Created for CSC3402 Lab 10*
